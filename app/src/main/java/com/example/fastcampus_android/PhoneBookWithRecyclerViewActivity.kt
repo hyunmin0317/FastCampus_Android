@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.fastcampus_android
 
 import android.app.Activity
 import android.content.Intent
@@ -22,13 +22,13 @@ class PhoneBookWithRecyclerViewActivity : AppCompatActivity() {
 
         val phoneBook = createFakePhoneBook(faskeNumber = 30)
         val phoneBookRecyclerAdapter = PhoneBookRecyclerAdapter(
-            phonebookList = phoneBook,
-            inflater = LayoutInflater.from(this@PhoneBookWithRecyclerViewActivity),
-            activity = this
+                phonebookList = phoneBook,
+                inflater = LayoutInflater.from(this@PhoneBookWithRecyclerViewActivity),
+                activity = this
         )
         phonebook_recycler_view.adapter = phoneBookRecyclerAdapter
         phonebook_recycler_view.layoutManager =
-            LinearLayoutManager(this@PhoneBookWithRecyclerViewActivity)
+                LinearLayoutManager(this@PhoneBookWithRecyclerViewActivity)
 
 
 //        with(phonebook_recycler_view) {
@@ -44,7 +44,7 @@ class PhoneBookWithRecyclerViewActivity : AppCompatActivity() {
     fun createFakePhoneBook(faskeNumber: Int = 10, phoneBook: PhoneBook = PhoneBook()): PhoneBook {
         for (i in 0 until faskeNumber) {
             phoneBook.addPerson(
-                Person(name = "" + i + "번째 사람", number = "" + i + "번째 사람의 전화 번호")
+                    Person(name = "" + i + "번째 사람", number = "" + i + "번째 사람의 전화 번호")
             )
         }
         return phoneBook
@@ -54,9 +54,9 @@ class PhoneBookWithRecyclerViewActivity : AppCompatActivity() {
 
 
 class PhoneBookRecyclerAdapter(
-    val phonebookList: PhoneBook,
-    val inflater: LayoutInflater,
-    val activity: Activity
+        val phonebookList: PhoneBook,
+        val inflater: LayoutInflater,
+        val activity: Activity
 ) : RecyclerView.Adapter<PhoneBookRecyclerAdapter.ViewHolder>() {
 
 
