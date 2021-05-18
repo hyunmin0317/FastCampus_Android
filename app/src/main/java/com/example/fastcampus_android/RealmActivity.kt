@@ -42,8 +42,5 @@ class RealmActivity : AppCompatActivity() {
                 //it.where(School::class.java).findFirst().deleteFromRealm()
             }
         }
-
-
-
     }
 }
