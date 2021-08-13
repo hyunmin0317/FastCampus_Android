@@ -1,5 +1,5 @@
 # FastCampus Android
-### Android 앱 개발 올인원 패키지 (2021.03.31 ~ 2021.07.17)
+### Android 앱 개발 올인원 패키지 (2021년 1학기)
 ---
 ### chapter 01 안드로이드 앱 개발 유치원
 ### chapter 02 질문 (Slack)
