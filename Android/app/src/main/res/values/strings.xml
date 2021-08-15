@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <string name="hello">안녕하세요. 상명대학교 19학번 최현민입니다.</string>
 </resources>
