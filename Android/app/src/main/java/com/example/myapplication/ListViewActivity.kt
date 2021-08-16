@@ -21,7 +21,7 @@ class ListViewActivity : AppCompatActivity() {
             carList.add(CarForList(""+i+"번째 자동차", ""+i+"순위 엔진"))
         }
 
-        val adapter = ListViewAdapter(carList, this@ListViewActivity)
+        val adapter = ListViewAdapter(carList, LayoutInflater.from(this@ListViewActivity))
         listView.adapter = adapter
 
         // Listener 달기
@@ -36,7 +36,7 @@ class ListViewActivity : AppCompatActivity() {
 
 class ListViewAdapter(
     val carForList: ArrayList<CarForList>,
-    val context: Context
+    val layoutInflater: LayoutInflater
 ) : BaseAdapter() {
 
     // 그리고자 하는 아이템 리스트의 전체 갯수
@@ -55,14 +55,38 @@ class ListViewAdapter(
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val layoutInflater = LayoutInflater.from(context)
-        val view = layoutInflater.inflate(R.layout.item_view, null)
+//        ViewHolder 미사용
+//        val view = layoutInflater.inflate(R.layout.item_view, null)
+//        val carNameTextview = view.findViewById<TextView>(R.id.car_name)
+//        val carEngineTextview = view.findViewById<TextView>(R.id.car_engine)
+//
+//        carNameTextview.setText(carForList.get(position).name)
+//        carEngineTextview.setText(carForList.get(position).engine)
+//        return view
 
-        val carNameTextview = view.findViewById<TextView>(R.id.car_name)
-        val carEngineTextview = view.findViewById<TextView>(R.id.car_engine)
+        val view : View
+        val holder : ViewHolder
 
-        carNameTextview.setText(carForList.get(position).name)
-        carEngineTextview.setText(carForList.get(position).engine)
+        if (convertView == null) {
+            view = layoutInflater.inflate(R.layout.item_view, null)
+            holder = ViewHolder()
+
+            holder.carName = view.findViewById(R.id.car_name)
+            holder.carEngine = view.findViewById(R.id.car_engine)
+
+            view.tag = holder
+        } else {
+            holder = convertView.tag as ViewHolder
+            view = convertView
+        }
+        holder.carName?.setText(carForList.get(position).name)
+        holder.carEngine?.setText(carForList.get(position).engine)
+
         return view
     }
+}
+
+class ViewHolder{
+    var carName: TextView? = null
+    var carEngine: TextView? = null
 }
