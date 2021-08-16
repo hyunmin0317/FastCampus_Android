@@ -31,6 +31,7 @@ class AsyncActivity : AppCompatActivity() {
     }
 }
 
+// 파라미터 값 설명
 // params : doInBackground 에서 사용할 타입
 // progress : onProgressUpdate 에서 사용할 타입
 // result : onPostExecute 에서 사용할 타입
