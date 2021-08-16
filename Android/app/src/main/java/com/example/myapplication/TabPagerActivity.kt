@@ -17,7 +17,7 @@ class TabPagerActivity : AppCompatActivity() {
         tab_layout.addTab(tab_layout.newTab().setText("Two"))
         tab_layout.addTab(tab_layout.newTab().setText("Three"))
 
-        val pagerAdapter = PagerAdapter(supportFragmentManager, 3)
+        val pagerAdapter = FragmentPagerAdapter(supportFragmentManager, 3)
         view_pager.adapter = pagerAdapter
 
         tab_layout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
@@ -38,7 +38,7 @@ class TabPagerActivity : AppCompatActivity() {
 }
 
 
-class PagerAdapter(
+class FragmentPagerAdapter(
     fragmentManager: FragmentManager,
     val tabCount: Int
 ): FragmentStatePagerAdapter(fragmentManager) {
