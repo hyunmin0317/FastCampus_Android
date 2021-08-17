@@ -45,6 +45,7 @@ class OutStagramPostListActivity : AppCompatActivity() {
                             LayoutInflater.from(this@OutStagramPostListActivity),
                             glide
                         )
+                        postList.reverse()
                         post_recyclerview.adapter = adapter
                         post_recyclerview.layoutManager =
                             LinearLayoutManager(this@OutStagramPostListActivity)
