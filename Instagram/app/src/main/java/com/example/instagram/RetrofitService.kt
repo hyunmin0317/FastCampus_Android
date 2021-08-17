@@ -6,7 +6,10 @@ import retrofit2.http.*
 interface RetrofitService {
 
     @POST("user/signup/")
+    @FormUrlEncoded
     fun register(
-        @Body register: Register
+        @Field("username") username : String,
+        @Field("password1") password1 : String,
+        @Field("password2") password2 : String
     ): Call<User>
 }

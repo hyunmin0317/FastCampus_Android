@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -18,19 +19,26 @@ class EmailSignupActivity : AppCompatActivity() {
     lateinit var userPassword1View : EditText
     lateinit var userPassword2View : EditText
     lateinit var registerBtn : TextView
+    lateinit var loginBtn : TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_email_signup)
 
         initView(this@EmailSignupActivity)
-        setupListener()
+        setupListener(this@EmailSignupActivity)
 
     }
 
-    fun setupListener() {
+    fun setupListener(activity: Activity) {
         registerBtn.setOnClickListener {
             register(this@EmailSignupActivity)
+        }
+        loginBtn.setOnClickListener {
+            val sp = activity.getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+            val token = sp.getString("login_sp", "")
+            Log.d("abcc", "token : "+token)
         }
     }
 
@@ -38,9 +46,10 @@ class EmailSignupActivity : AppCompatActivity() {
         val username = usernameView.text.toString()
         val password1 = userPassword1View.text.toString()
         val password2 = userPassword2View.text.toString()
-        val register = Register(username, password1, password2)
 
-        (application as MasterApplication).service.register(register).enqueue(object:
+        (application as MasterApplication).service.register(
+            username, password1, password2
+        ).enqueue(object:
             Callback<User>{
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
@@ -69,6 +78,7 @@ class EmailSignupActivity : AppCompatActivity() {
         userPassword1View = activity.findViewById(R.id.password1_inpubox)
         userPassword2View = activity.findViewById(R.id.password2_inpubox)
         registerBtn = activity.findViewById(R.id.register)
+        loginBtn = activity.findViewById(R.id.login)
     }
 
     fun getUserName(): String {
