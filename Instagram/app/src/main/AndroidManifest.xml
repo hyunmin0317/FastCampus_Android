@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Instagram"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OutStagramPostListActivity"></activity>
+        <activity android:name=".OutStagramUploadActivity"></activity>
+        <activity android:name=".OutStagramMyPostListActivity" />
+        <activity android:name=".OutStagramUserInfo" />
+        <activity android:name=".OutStagramPostListActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".EmailSignupActivity">
             <intent-filter>
