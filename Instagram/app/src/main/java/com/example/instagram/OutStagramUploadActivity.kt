@@ -1,10 +1,14 @@
 package com.example.instagram
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_out_stagram_upload.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -22,22 +26,21 @@ class OutStagramUploadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_out_stagram_upload)
 
-        view_pictures.setOnClickListener {
-            getPicture()
-        }
-        upload_post.setOnClickListener {
-            uploadPost()
+        val cameraPermissionCheck = ContextCompat.checkSelfPermission(
+            this@OutStagramUploadActivity,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+
+        // 권한이 없는 경우
+        if (cameraPermissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1000)
         }
 
-        all_list.setOnClickListener {
-            startActivity(Intent(this, OutStagramPostListActivity::class.java))
-        }
-        my_list.setOnClickListener {
-            startActivity(Intent(this, OutStagramMyPostListActivity::class.java))
-        }
-        user_info.setOnClickListener {
-            startActivity(Intent(this, OutStagramUserInfo::class.java))
-        }
+        view_pictures.setOnClickListener { getPicture() }
+        upload_post.setOnClickListener { uploadPost() }
+        all_list.setOnClickListener { startActivity(Intent(this, OutStagramPostListActivity::class.java)) }
+        my_list.setOnClickListener { startActivity(Intent(this, OutStagramMyPostListActivity::class.java)) }
+        user_info.setOnClickListener { startActivity(Intent(this, OutStagramUserInfo::class.java)) }
     }
 
 
