@@ -2,6 +2,7 @@ package com.example.instagram
 
 import android.app.Application
 import android.content.Context
+import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -14,8 +15,9 @@ class MasterApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        
+        Stetho.initializeWithDefaults(this)
         createRetrofit()
+        //chrome://inspect/#devices
     }
 
     fun createRetrofit() {
@@ -32,8 +34,6 @@ class MasterApplication: Application() {
             } else {
                 it.proceed(original)
             }
-
-
         }
 
         val client = OkHttpClient.Builder()
@@ -61,5 +61,4 @@ class MasterApplication: Application() {
         if (token == "null") return null
         else return token
     }
-
 }
