@@ -2,9 +2,9 @@ package com.example.instagram
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_out_stagram_upload.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -22,10 +22,22 @@ class OutStagramUploadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_out_stagram_upload)
 
-        view_pictures.setOnClickListener { getPicture() }
-        all_list.setOnClickListener { startActivity(Intent(this, OutStagramPostListActivity::class.java)) }
-        user_info.setOnClickListener { startActivity(Intent(this, OutStagramUserInfo::class.java)) }
-        my_list.setOnClickListener { startActivity(Intent(this, OutStagramMyPostListActivity::class.java)) }
+        view_pictures.setOnClickListener {
+            getPicture()
+        }
+        upload_post.setOnClickListener {
+            uploadPost()
+        }
+
+        all_list.setOnClickListener {
+            startActivity(Intent(this, OutStagramPostListActivity::class.java))
+        }
+        my_list.setOnClickListener {
+            startActivity(Intent(this, OutStagramMyPostListActivity::class.java))
+        }
+        user_info.setOnClickListener {
+            startActivity(Intent(this, OutStagramUserInfo::class.java))
+        }
     }
 
 
@@ -83,4 +95,5 @@ class OutStagramUploadActivity : AppCompatActivity() {
     fun getContent(): String {
         return content_input.text.toString()
     }
+
 }

@@ -31,4 +31,7 @@ interface RetrofitService {
         @Part image : MultipartBody.Part,
         @Part ("content")requestBody : RequestBody
     ):Call<Post>
+
+    @GET("instagram/post/list/")
+    fun getUserPostList():Call<ArrayList<Post>>
 }
