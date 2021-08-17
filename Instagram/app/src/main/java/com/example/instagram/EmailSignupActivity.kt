@@ -59,6 +59,9 @@ class EmailSignupActivity : AppCompatActivity() {
                     val token = user!!.token!!
                     saveUserToken(token, activity)
                     (application as MasterApplication).createRetrofit()
+                    activity.startActivity(
+                        Intent(activity, OutStagramPostListActivity::class.java)
+                    )
                 }
             }
 
